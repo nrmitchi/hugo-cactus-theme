@@ -7,7 +7,16 @@
                 <header>
                     <h1>{{ .Title }}</h1>
                     <h2 class="headline">
-                    {{ .Date.Format "January 2, 2006" }} 
+                    {{ with .PublishDate }}
+                        {{ if eq ($.PublishDate.Format "2006-01-02") "0001-01-01" }}
+                            <!-- Print the Date instead of PublishDate if PublishDate is defined but at its initial value of Jan 1, 0001 -->
+                            {{ $.Date.Format $.Site.Params.DateFormat }}
+                        {{ else }}
+                            {{ $.PublishDate.Format $.Site.Params.DateFormat }}
+                        {{ end }}
+                    {{ else }}
+                        {{ $.Date.Format $.Site.Params.DateFormat }}
+                    {{ end }}
                     <br>
                     {{ with .Params.tags }}
                     {{ if ge (len .) 1 }}

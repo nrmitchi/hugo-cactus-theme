@@ -3,7 +3,16 @@
     {{ $url := replace .Permalink .Site.BaseURL "" }}
         {{ if ne $url "about/" }}
             <li>
-                <a href='{{ .Permalink }}'><aside class="dates">{{ .Date.Format "Jan 2" }}</aside></a>
+                <a href='{{ .Permalink }}'>
+                    <aside class="dates">
+                    {{ if eq (.PublishDate.Format "2006-01-02") "0001-01-01" }}
+                        <!-- Print the Date instead of PublishDate if PublishDate is defined but at its initial value of Jan 1, 0001 -->
+                        {{ .Date.Format .Site.Params.ListDateFormat }}
+                    {{ else }}
+                        {{ .PublishDate.Format .Site.Params.ListDateFormat }}
+                    {{ end }}
+                    </aside>
+                </a>
                 <a href='{{ .Permalink }}'>{{ .Title }} <h2>{{ .Description | markdownify }}</h2></a>
             </li>
         {{ end }}
