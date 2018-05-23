@@ -1,14 +1,14 @@
 +++
-title: "{{ replace .TranslationBaseName "-" " " | title }}"
+title = "{{ replace .TranslationBaseName "-" " " | title }}"
 
 description = ""
 
-date: {{ .Date }}
+date = "{{ .Date }}"
 
 tags = [
 ]
 categories = ["
 ]
 
-draft: true
+draft = true
 +++
