@@ -7,4 +7,8 @@
 <script src="{{ $.Site.BaseURL }}{{ . }}"></script>
 {{ end }}
 
+{{ if .Site.Params.fullstory_org }}
+{{ partial "fullstory_js.html" . }}
+{{ end }}
+
 {{ template "_internal/google_analytics.html" . }}
