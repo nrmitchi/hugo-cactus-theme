@@ -7,7 +7,7 @@ date = "{{ .Date }}"
 
 tags = [
 ]
-categories = ["
+categories = [
 ]
 
 draft = true
