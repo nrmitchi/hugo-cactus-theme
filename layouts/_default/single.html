@@ -44,7 +44,9 @@
                 </section>
             </footer>
 
-            {{ partial "mailchimp-horizontal.html" . }}
+            {{ if .Site.Params.mailchimp_u }}{{ partial "mailchimp-horizontal.html" . }}{{ end }}
+            {{ if .Site.Params.sendinblue_id }}{{ partial "sendinblue-iframe.html" . }}{{ end }}
+            
 
             {{ template "_internal/disqus.html" . }}
 
